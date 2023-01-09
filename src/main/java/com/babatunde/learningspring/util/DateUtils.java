@@ -11,6 +11,9 @@ import org.springframework.stereotype.Component;
 public class DateUtils {
     public Date createDateFromString(String dateString) {
         DateFormat format = new SimpleDateFormat("YYYY-MM-dd");
+        if (dateString == null) {
+            return new Date();
+        }
         Date date = null;
         try {
             date = format.parse(dateString);
