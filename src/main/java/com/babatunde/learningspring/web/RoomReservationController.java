@@ -5,14 +5,12 @@ import java.util.List;
 
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
-import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.RequestParam;
 
 import com.babatunde.learningspring.business.ReservationService;
 import com.babatunde.learningspring.business.RoomReservation;
-import com.babatunde.learningspring.data.Reservation;
 import com.babatunde.learningspring.util.DateUtils;
 
 @Controller
@@ -35,13 +33,5 @@ public class RoomReservationController {
         List<RoomReservation> roomReservations = this.reservationService.getRoomReservationsForDate(date);
         model.addAttribute("roomReservations", roomReservations);
         return "roomres";
-    }
-
-    @RequestMapping(method = RequestMethod.GET, path = "/{id}", produces = "application/json", consumes = "application/json")
-    public Reservation getReservation(
-        @PathVariable("id") long id
-    ) {
-        Reservation reservation = this.reservationService.getReservation(id);
-        return reservation;
     }
 }

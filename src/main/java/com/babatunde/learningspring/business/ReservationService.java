@@ -68,6 +68,7 @@ public class ReservationService {
 
         return roomReservations;
     }
+
     public List<Guest> getGuests() {
         Iterable<Guest> guests = this.guestRepository.findAll();
         List<Guest> guestList = new ArrayList<>();
@@ -99,5 +100,12 @@ public class ReservationService {
         reservations.forEach(reservationList::add);
         reservationList.sort((o1, o2) -> o1.getReservationDate().compareTo(o2.getReservationDate()));
         return reservationList;
+    }
+
+    public Guest createGuest(Guest guest) {
+        if (guest == null) {
+            throw new IllegalArgumentException("Guest cannot be null");
+        }
+        return this.guestRepository.save(guest);
     }
 }
